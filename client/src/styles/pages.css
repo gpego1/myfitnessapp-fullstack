@@ -1,0 +1,14 @@
+body {
+  margin: 0;
+  background: #050505;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h2 {
+  color: white;
+}
+
+.page {
+  padding: 40px;
+  color: white;
+}

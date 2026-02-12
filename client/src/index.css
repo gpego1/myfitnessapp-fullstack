@@ -1,0 +1,75 @@
+/* RESET */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* THEME */
+
+:root {
+  --bg-main: #050505;
+  --bg-card: #111;
+  --primary: #00ff88;
+  --text-main: #ffffff;
+  --text-muted: #9ca3af;
+  --radius: 10px;
+}
+
+/* BASE */
+
+body {
+  background: var(--bg-main);
+  color: var(--text-main);
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+}
+
+/* INPUTS */
+
+input {
+  padding: 12px;
+  border-radius: var(--radius);
+  border: none;
+  outline: none;
+  background: #1a1a1a;
+  color: white;
+}
+
+input::placeholder {
+  color: var(--text-muted);
+}
+
+/* BUTTONS */
+
+button {
+  padding: 12px;
+  border-radius: var(--radius);
+  border: none;
+  background: var(--primary);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+/* LINKS */
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 20px;
+}
