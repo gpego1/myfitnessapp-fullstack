@@ -1,15 +1,16 @@
 import express from "express";
 import workouts from "./workoutRoutes.js";
+import authorization from "./authRoutes.js";
 
 const routes = (app) => {
-  app.route('/').get((req, res) => {
-    res.status(200).send({titulo: "myFitness"})
-  })
+  app.get("/", (req, res) => {
+    res.status(200).json({ title: "myFitness" });
+  });
 
-  app.use(
-    express.json(),
-    workouts
-  )
-}
+  app.use(express.json());
 
-export default routes
+  app.use("/workouts", workouts);
+  app.use("/auth", authorization);
+};
+
+export default routes;
