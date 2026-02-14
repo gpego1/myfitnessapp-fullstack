@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import { User } from "../model/index.js";
 import bcrypt from "bcryptjs"
+import NotFound from "../errors/NotFound.js";
 
 class AuthService {
     static async register(data) {
@@ -17,7 +18,7 @@ class AuthService {
 
     static async login(email, password) {
         const user = await User.findOne({email}).select("+password");
-        if (!user) throw new Error("The user doesnt exists");
+        if (!user) throw new NotFound("The user doesnt exists");
         const valid = await bcrypt.compare(password, user.password);
         if (!valid) throw new Error("Invalid credentials");
 

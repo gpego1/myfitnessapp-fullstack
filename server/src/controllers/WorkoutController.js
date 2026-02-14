@@ -15,7 +15,6 @@ export class WorkoutController {
 
 static async getWorkoutByTitle(req, res, next) {
   try {
-    console.log("REQ QUERY:", req.query);
     const { title } = req.query;
 
     if (title) {

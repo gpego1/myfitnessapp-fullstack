@@ -13,6 +13,27 @@ export class ExerciseController {
         }
     }
 
+    static async getExerciseByMuscleTargetOrName(req, res, next) {
+        try {
+            const { muscleTarget, name } = req.query;
+
+            if (muscleTarget || name) {
+                const result = await Exercise.find({
+                    $or:[
+                        muscleTarget ? { muscleTarget: {$regex: muscleTarget, $options: "i"} } : {},
+                        name ? { name: {$regex: name, $options: "i"}} : {}
+                    ]
+                });
+
+                return res.status(200).json(result);
+            } else {
+                throw new NotFound("Cannot resolve muscleTarget")
+            }
+        } catch (error) {
+            next(error);
+        }
+    }
+
     static async createExercise(req, res, next) {
         try {
             let createdExercises = new Exercise(req.body);
