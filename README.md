@@ -1,4 +1,4 @@
-# 🏋️ Fitness Tracker — Full Stack Application
+# 🏋️ FitForce a Fitness Tracker — Full Stack Application
 
 Aplicação full stack para acompanhamento de treinos, alimentação e evolução corporal, permitindo ao usuário registrar atividades físicas, refeições e progresso ao longo do tempo através de um dashboard interativo.
 
