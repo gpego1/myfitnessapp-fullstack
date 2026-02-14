@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 
 const workoutSchema = new mongoose.Schema(
     {
-        id: {type: mongoose.Types.ObjectId},
         title: {type: String, required: [true, "The title is required"]},
         level: {
             type: String,

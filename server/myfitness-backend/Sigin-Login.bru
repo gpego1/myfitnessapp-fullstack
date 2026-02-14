@@ -4,12 +4,29 @@ meta {
   seq: 2
 }
 
-post {
-  url: 
-  body: none
+get {
+  url: http://localhost:8080/workoutlogs/userId/workoutId?userId=6990eda8d894f4eee87269b5&workoutId=698f44c3566b6e04481a8673
+  body: json
   auth: inherit
+}
+
+params:query {
+  userId: 6990eda8d894f4eee87269b5
+  workoutId: 698f44c3566b6e04481a8673
+}
+
+body:json {
+  {
+    "user": "6990eda8d894f4eee87269b5",
+    "workout": "698f44c3566b6e04481a8673",
+    "duration": 60,
+    "caloriesBurned": 400,
+    "completedAt": "2026-02-14T13:00:00.000Z"
+  }
+  
 }
 
 settings {
   encodeUrl: true
+  timeout: 0
 }

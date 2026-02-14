@@ -8,8 +8,8 @@ const router = express.Router();
 router  
     .get("/:id", ExerciseController.getExerciseById, auth)
     .get("", ExerciseController.getExerciseByMuscleTargetOrName, auth, paginate)
-    .post("", ExerciseController.createExercise)
-    .put("/:id", ExerciseController.updateExercises)
-    .delete("/:id", ExerciseController.deleteExercises)
+    .post("", ExerciseController.createExercise, auth)
+    .put("/:id", ExerciseController.updateExercises, auth)
+    .delete("/:id", ExerciseController.deleteExercises, auth)
 
 export default router;
