@@ -51,7 +51,7 @@ static async getWorkoutByTitle(req, res, next) {
  static async updateWorkout(req, res, next) {
     try {
         const id = req.params.id;
-        const search = await workouts.findByIdAndUpdate(id, req.body);
+        const search = await workouts.findByIdAndUpdate(id, {$set:req.body});
         if (search != null) {
             res.status(200).json({message: "Workout has been updated successfully!"})
         } else {

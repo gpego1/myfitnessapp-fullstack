@@ -5,9 +5,9 @@ import paginate from "../middlewares/paginate.js";
 const router = express.Router();
 
 router
-    .get("/workouts/:id", WorkoutController.getWorkoutById, paginate)
-    .get("/workouts", WorkoutController.getWorkoutByTitle, paginate)
-    .post("/workouts", WorkoutController.createWorkout)
-    .put("/workouts/:id", WorkoutController.updateWorkout)
-    .delete("/workouts/:id", WorkoutController.deleteWorkoutById)
+    .get("/:id", WorkoutController.getWorkoutById, paginate)
+    .get("", WorkoutController.getWorkoutByTitle, paginate)
+    .post("", WorkoutController.createWorkout)
+    .put("/:id", WorkoutController.updateWorkout)
+    .delete("/:id", WorkoutController.deleteWorkoutById)
 export default router;

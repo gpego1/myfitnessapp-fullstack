@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 
 const exerciceSchema = mongoose.Schema(
     {
-        id: {type: mongoose.Types.ObjectId},
         name: {type: String, required: [true, "Name is required"]},
         description: {type: String, required: [true, "Description is required"]},
         muscleTarget: {type: String},
@@ -13,5 +12,5 @@ const exerciceSchema = mongoose.Schema(
     },
     {timestamps: true}
 );
-const exercises = mongoose.model("exercises", exerciceSchema);
-export default exercises;
+const Exercise = mongoose.model("exercises", exerciceSchema);
+export default Exercise;

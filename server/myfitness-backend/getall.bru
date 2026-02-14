@@ -5,24 +5,25 @@ meta {
 }
 
 get {
-  url: http://localhost:8080/workouts?title=costas
+  url: http://localhost:8080/workouts?title=Upper Body Strength
   body: json
-  auth: inherit
+  auth: none
 }
 
 params:query {
-  title: costas
+  title: Upper Body Strength
   ~id: 698e2aeb5af70a021087c34f?id
   ~id: 698e2aeb5af70a021087c34f?id
 }
 
 body:json {
-   {
-      "title": "Treino Costas e Biceps",
-      "description": "Elevação lateral, remada curvada, pulley baixo, rosca direta e alternada.",
-      "dayOfWeek": "Tuesday",
-      "__v": 0
-    }
+  {
+    "title":"Upper Body Strength",
+    "level":"Beginner",
+    "muscleGroup":"Chest, Shoulders, Triceps",
+    "description":"Basic upper body workout focused on pushing muscles.",
+    "dayOfWeek":"Monday"
+  }
 }
 
 settings {
