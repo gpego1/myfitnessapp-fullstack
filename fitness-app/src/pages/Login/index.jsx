@@ -1,20 +1,41 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import api from '../../api';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import styles from './styles.module.css';
 
 export default function Login() {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   });
 
-  const handleSubmit = (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
-    // Mock login - redirect to dashboard
-    navigate('/dashboard');
+    setLoading(true);
+    setError("");
+
+    try {
+      const response = await api.post("/auth/login", {
+        email: formData.email,
+        password: formData.password
+      });
+      console.log("Response: ", response.data);
+
+      localStorage.setItem("token", response.data.token);
+      navigate("/profile");
+    } catch (err) {
+      setError(err.response?.data?.message || "Fail to login.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChange = (e) => {
