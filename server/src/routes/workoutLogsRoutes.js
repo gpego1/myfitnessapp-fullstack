@@ -6,6 +6,7 @@ const router = express.Router();
 
 router
     .get("/userId/workoutId", WorkoutLogController.getWorkoutLogByUserIdAndWorkoutId, auth)
+    .get("/history/:userId", WorkoutLogController.history)
     .post("", WorkoutLogController.createWorkoutLog, auth)
 
 export default router;

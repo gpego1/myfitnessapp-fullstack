@@ -5,6 +5,7 @@ import exercises from "./exercisesRoutes.js"
 import workoutExercises from "./workoutExerciseRoutes.js";
 import workoutLogs from "./workoutLogsRoutes.js";
 import meals from "./mealsRouter.js";
+import userGoals from "./userGoalsRoutes.js"
 
 const routes = (app) => {
   app.get("/", (req, res) => {
@@ -19,6 +20,7 @@ const routes = (app) => {
   app.use("/workoutexercises", workoutExercises);
   app.use("/workoutlogs", workoutLogs);
   app.use("/meals", meals);
+  app.use("/goals", userGoals);
 };
 
 export default routes;

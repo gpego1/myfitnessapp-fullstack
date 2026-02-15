@@ -1,18 +1,15 @@
 import mongoose from "mongoose";
-import autopopulate from "mongoose-autopopulate";
 
 const workoutLogSchema = mongoose.Schema (
     {
         id: {type: mongoose.Types.ObjectId},
         user: {
             type: mongoose.Schema.Types.ObjectId,
-            autopopulate: true,
             ref: "users",
             required: [true, "User is required"]
         },
         workout: {
             type: mongoose.Schema.Types.ObjectId,
-            autopopulate: true,
             ref: "workouts",
             required: [true, "workout is required"]
         },
@@ -22,6 +19,5 @@ const workoutLogSchema = mongoose.Schema (
     }
 );
 
-workoutLogSchema.plugin(autopopulate);
 const workoutLog = mongoose.model("workoutLogs", workoutLogSchema);
 export default workoutLog;

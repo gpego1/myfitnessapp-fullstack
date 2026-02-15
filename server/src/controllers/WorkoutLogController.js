@@ -1,5 +1,6 @@
 import NotFound from "../errors/NotFound.js";
 import { workoutLog } from "../model/index.js";
+import WorkoutLogService from "../services/WorkoutLogService.js";
 
 export class WorkoutLogController {
 
@@ -27,9 +28,19 @@ export class WorkoutLogController {
 
     static async createWorkoutLog(req, res, next) {
         try {
-            const result = await workoutLog.create(req.body);
+            const result = await WorkoutLogService.create(req.body);
             res.status(201).json(result);
         } catch(error) {
+            next(error);
+        }
+    }
+
+    static async history(req, res, next) {
+        try {
+            const userId  = req.params.userId;
+            const result = await WorkoutLogService.history(userId);
+            res.status(200).json(result);
+        } catch (error) {
             next(error);
         }
     }

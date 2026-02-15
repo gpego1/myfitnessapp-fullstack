@@ -1,0 +1,32 @@
+meta {
+  name: workoutlogs
+  type: http
+  seq: 5
+}
+
+get {
+  url: http://localhost:8080/meals/summary/69912cb0625d480c901ebecb?date=2026-02-14
+  body: json
+  auth: inherit
+}
+
+params:query {
+  date: 2026-02-14
+}
+
+body:json {
+  {
+    "user": "69912cb0625d480c901ebecb",
+    "calories": 420,
+    "protein": 35,
+    "carbs": 50,
+    "fat": 12,
+    "date": "2026-02-14"
+  }
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

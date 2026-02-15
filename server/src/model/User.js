@@ -15,6 +15,10 @@ const UserSchema = new mongoose.Schema(
             },
             required: [true, "Goal is required"]
         },
+        dailyCaloriesGoal: { type: Number, default: 2000 },
+        dailyProteinGoal: { type: Number, default: 120 },
+        dailyCarbsGoal: { type: Number, default: 250 },
+        dailyFatGoal: { type: Number, default: 60 },
         role: {
             type: String,
             enum: {
