@@ -75,9 +75,40 @@ npm run preview
 
 ## 📁 Project Structure
 
-fitness-app/ ├── src/ │ ├── assets/ │ ├── components/ │ ├── pages/ │ ├──
-layouts/ │ ├── mock/ │ ├── routes/ │ ├── styles/ │ ├── App.jsx │ └──
-main.jsx ├── index.html ├── vite.config.js └── package.json
+```
+fitness-app/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   │   ├── Button/
+│   │   │   ├── index.jsx
+│   │   │   └── styles.module.css
+│   │   ├── Input/
+│   │   ├── Card/
+│   │   └── Navbar/
+│   ├── pages/
+│   │   ├── Login/
+│   │   ├── Register/
+│   │   ├── Dashboard/
+│   │   ├── Workouts/
+│   │   ├── WorkoutDetails/
+│   │   ├── Exercises/
+│   │   └── Profile/
+│   ├── layouts/
+│   │   └── MainLayout.jsx
+│   ├── mock/
+│   │   ├── workouts.js
+│   │   └── exercises.js
+│   ├── routes/
+│   │   └── AppRoutes.jsx
+│   ├── styles/
+│   │   └── global.css
+│   ├── App.jsx
+│   └── main.jsx
+├── index.html
+├── vite.config.js
+└── package.json
+```
 
 ------------------------------------------------------------------------
 
