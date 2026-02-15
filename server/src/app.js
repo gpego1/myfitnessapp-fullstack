@@ -4,6 +4,8 @@ import routes from "./routes/index.js"
 import errorHanlder from "./middlewares/ErrorHanlder.js";
 import notFoundEntityMiddleware from "./middlewares/NotFoundEntityHandler.js";
 import corsMiddleware from "./middlewares/corsMiddleware.js";
+import swaggerUi from "swagger-ui-express";
+import { swaggerSpec } from "./swagger.js";
 
 db.on("error", console.log.bind(console, 'Error to connect with db'))
 db.once("open", () => {
@@ -14,10 +16,14 @@ db.once("open", () => {
 const app = express();
 app.use(corsMiddleware);
 app.use(express.json());
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+
 routes(app);
 
-app.use(errorHanlder);
 app.use(notFoundEntityMiddleware)
+app.use(errorHanlder);
 
 
 

@@ -5,7 +5,7 @@ import exercises from "./exercisesRoutes.js"
 import workoutExercises from "./workoutExerciseRoutes.js";
 import workoutLogs from "./workoutLogsRoutes.js";
 import meals from "./mealsRouter.js";
-import userGoals from "./userGoalsRoutes.js"
+import userGoals from "./userGoalsRoutes.js";
 
 const routes = (app) => {
   app.get("/", (req, res) => {
