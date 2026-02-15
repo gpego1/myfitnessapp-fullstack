@@ -1,65 +1,63 @@
 # 🏋️ FitForce Server --- Backend API
 
-Backend REST API para um aplicativo fitness completo, permitindo
-gerenciamento de usuários, metas nutricionais, refeições, treinos e
-histórico de atividades físicas.
+REST Backend API for a complete fitness application, allowing management
+of users, nutrition goals, meals, workouts, and activity history.
 
-O projeto foi desenvolvido com foco em **escalabilidade**, **boas
-práticas REST** e **arquitetura em camadas (Controller / Service /
+The project was built with a focus on **scalability**, **REST best
+practices**, and **layered architecture (Controller / Service /
 Model)**.
 
 ------------------------------------------------------------------------
 
-## 🚀 Funcionalidades
+## 🚀 Features
 
-### 👤 Usuários
+### 👤 Users
 
--   Cadastro
--   Atualização de dados corporais
--   Definição de metas diárias (calorias, proteínas, carboidratos e
-    gorduras)
--   Controle de roles (ADMIN / USER)
+-   Registration
+-   Body data updates
+-   Daily goals configuration (calories, protein, carbs, fat)
+-   Role management (ADMIN / USER)
 
-### 🎯 Metas
+### 🎯 Goals
 
--   Atualização das metas nutricionais
--   Cálculo automático de progresso diário
--   Retorno de:
-    -   Consumido
-    -   Restante
-    -   Porcentagem atingida
+-   Nutrition goal updates
+-   Automatic daily progress calculation
+-   Returns:
+    -   Consumed
+    -   Remaining
+    -   Completion percentage
 
-### 🍽️ Refeições
+### 🍽️ Meals
 
--   Registro de refeições
--   Cálculo automático de macros
--   Consulta por data
--   Integração direta com o progresso diário
+-   Meal registration
+-   Automatic macro calculation
+-   Date-based queries
+-   Integrated with daily progress
 
-### 🏋️ Treinos
+### 🏋️ Workouts
 
--   Cadastro de treinos
--   Busca por título
--   Nível de dificuldade
--   Grupo muscular
--   Dia da semana
+-   Workout creation
+-   Search by title
+-   Difficulty level
+-   Muscle group
+-   Day of week
 
-### 📊 Histórico de Treinos
+### 📊 Workout History
 
-Sistema escalável de logs:
+Scalable logging system:
 
-Cada registro salva apenas:
+Each record stores only:
 
 -   userId
 -   workoutId
 
-Utilizando populate, a API retorna:
+Using populate, the API returns:
 
--   Usuário apenas uma vez
--   Treinos completos
--   Dados do log (duração, calorias, data)
+-   User only once
+-   Full workout objects
+-   Log data (duration, calories, date)
 
-Formato otimizado:
+Optimized response:
 
 ``` json
 {
@@ -77,18 +75,18 @@ Formato otimizado:
 
 ------------------------------------------------------------------------
 
-## 🧱 Arquitetura
+## 🧱 Architecture
 
 src/ ├── controllers/ ├── services/ ├── models/ ├── routes/ ├── errors/
 └── app.js
 
-Controller → recebe request\
-Service → regra de negócio\
+Controller → handles requests\
+Service → business logic\
 Model → MongoDB (Mongoose)
 
 ------------------------------------------------------------------------
 
-## 🛠️ Tecnologias
+## 🛠️ Technologies
 
 -   Node.js
 -   Express
@@ -100,78 +98,91 @@ Model → MongoDB (Mongoose)
 
 ------------------------------------------------------------------------
 
-## ▶️ Como rodar o projeto
+## ▶️ Running the project
 
-1.  Clone o repositório
+### 1. Clone repository
 
 git clone `<repo-url>`{=html}
 
-2.  Instale as dependências
+------------------------------------------------------------------------
+
+### 2. Install dependencies
 
 npm install
 
-3.  Crie o arquivo .env
+------------------------------------------------------------------------
 
-PORT=3000\
+### 3. Create `.env` file
+
+PORT=8080\
 MONGO_URI=mongodb://localhost:27017/fitness\
-JWT_SECRET=suachavesecreta
-
-4.  Inicie o servidor
-
-npm run dev
-
-Servidor disponível em http://localhost:8080
+JWT_SECRET=yoursecretkey
 
 ------------------------------------------------------------------------
 
-## 📌 Principais rotas
+### 4. Start server
 
-Usuários\
+npm run dev
+
+Server available at:
+
+http://localhost:8080
+
+------------------------------------------------------------------------
+
+## 📌 Main Routes
+
+Users
+
 POST /users\
 PUT /users/:userId
 
-Metas\
+Goals
+
 PUT /goals/:userId\
 GET /goals/daily/:userId
 
-Refeições\
+Meals
+
 POST /meals\
 GET /meals/:userId
 
-Treinos\
+Workouts
+
 POST /workouts\
 GET /workouts?title=
 
-Histórico\
+Workout Logs
+
 POST /workout-log\
 GET /workout-log/:userId
 
 ------------------------------------------------------------------------
 
-## 🔐 Segurança
+## 🔐 Security
 
--   Validação de ObjectId
--   Tratamento centralizado de erros
--   Separação de permissões por role
--   Sanitização de dados
-
-------------------------------------------------------------------------
-
-## 📈 Futuras melhorias
-
--   Paginação do histórico
--   Dashboard semanal/mensal
--   Cache com Redis
--   Upload de imagens
--   Sistema de desafios
--   Integração com frontend React
--   Deploy em cloud
+-   ObjectId validation
+-   Centralized error handling
+-   Role-based access
+-   Data sanitization
 
 ------------------------------------------------------------------------
 
-## 👨‍💻 Autor
+## 📈 Future Improvements
+
+-   History pagination
+-   Weekly/monthly dashboard
+-   Redis caching
+-   Image upload
+-   Challenge system
+-   React frontend integration
+-   Cloud deployment
+
+------------------------------------------------------------------------
+
+## 👨‍💻 Author
 
 Gabriel Pego Feitosa
 
-Desenvolvedor Full Stack em formação, focado em construir soluções reais
-usando Node.js, MongoDB e React.
+Full Stack Developer in training, focused on building real-world
+solutions using Node.js, MongoDB, and React.
