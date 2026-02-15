@@ -74,7 +74,7 @@ This project focuses on:
 - JavaScript
  ---
  ## Database Schemas
+<img width="1536" height="512" alt="fitForce - Schemas" src="https://github.com/user-attachments/assets/d381bd0d-7a12-4383-9781-b06eb95fa84c" />
 
- <img width="768" height="512" alt="schemas img" src="https://github.com/user-attachments/assets/a7fa0675-43e8-4b13-8cdd-bd63972d2d6a" />
 
 
