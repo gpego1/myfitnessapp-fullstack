@@ -11,7 +11,7 @@ const UserSchema = new mongoose.Schema(
         weight: {type: Number, required: [true, "Weight is required"]},
         goal: {type: String, 
             enum:{
-                values: ["cutting", "bulking", "maintenance"]
+                values: ["Lose fat", "Bulking", "Maintenance"]
             },
             required: [true, "Goal is required"]
         },
@@ -25,7 +25,7 @@ const UserSchema = new mongoose.Schema(
                 values: ["USER", "ADMIN"], 
                 default: "USER"
             },
-            required: [true, "Role is required"]
+            required: true
         }
         },
     {timestamp: true}
