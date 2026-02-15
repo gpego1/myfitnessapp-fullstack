@@ -73,7 +73,7 @@ const router = express.Router();
  */
 
 router
-    .get("/:id", WorkoutExercisesController.getWorkoutExercisesById, auth)
-    .post("", WorkoutExercisesController.createWorkoutExercises, auth)
+    .get("/:id", auth, WorkoutExercisesController.getWorkoutExercisesById)
+    .post("", auth, WorkoutExercisesController.createWorkoutExercises)
 
 export default router;

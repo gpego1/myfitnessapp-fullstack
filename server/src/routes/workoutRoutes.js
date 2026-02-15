@@ -145,9 +145,9 @@ const router = express.Router();
  */
 
 router
-    .get("/:id", WorkoutController.getWorkoutById, auth, paginate)
-    .get("", WorkoutController.getWorkoutByTitle, auth, paginate)
-    .post("", WorkoutController.createWorkout, auth)
-    .put("/:id", WorkoutController.updateWorkout, auth)
-    .delete("/:id", WorkoutController.deleteWorkoutById, auth)
+    .get("/:id", auth, WorkoutController.getWorkoutById, paginate)
+    .get("", auth, WorkoutController.getWorkoutByTitle, paginate)
+    .post("", auth, WorkoutController.createWorkout)
+    .put("/:id", auth, WorkoutController.updateWorkout)
+    .delete("/:id", auth, WorkoutController.deleteWorkoutById)
 export default router;

@@ -71,7 +71,7 @@ const router = express.Router();
  */
 
 router
-    .put("/:userId", UserGoalController.update, auth)
-    .get("/progress/:userId", UserGoalController.progress, auth);
+    .put("/:userId", auth, UserGoalController.update)
+    .get("/progress/:userId", auth, UserGoalController.progress);
 
 export default router;

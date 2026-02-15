@@ -4,6 +4,15 @@ import { Exercise } from "../model/index.js";
 
 export class ExerciseController {
 
+    static async getAllExercises(req, res, next) {
+        try {
+            const result = await Exercise.find();
+            res.status(200).json(result);
+        } catch (error) {
+            next(error);
+        }
+    }
+
     static async getExerciseById(req, res, next) {
         try {
             const result = await ExerciseService.getById(req.params.id);

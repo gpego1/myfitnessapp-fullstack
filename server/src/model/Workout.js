@@ -6,7 +6,7 @@ const workoutSchema = new mongoose.Schema(
         title: {type: String, required: [true, "The title is required"]},
         level: {
             type: String,
-            enum: {values: ["Beginner", "Itermediate", "Advanced"]},
+            enum: ["Beginner", "Intermediate", "Advanced"],
             required: [true, "Level of the workout is required"]},
         muscleGroup: {type: String, required: [true, "The muscle gorup(s) are required"]},
         description: {type: String, required: [true, "Description is required"]},

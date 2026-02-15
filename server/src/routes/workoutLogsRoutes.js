@@ -113,8 +113,8 @@ const router = express.Router();
 
 
 router
-    .get("/userId/workoutId", WorkoutLogController.getWorkoutLogByUserIdAndWorkoutId, auth)
-    .get("/history/:userId", WorkoutLogController.history, auth)
-    .post("", WorkoutLogController.createWorkoutLog, auth)
+    .get("/userId/workoutId", auth, WorkoutLogController.getWorkoutLogByUserIdAndWorkoutId)
+    .get("/history/:userId", auth, WorkoutLogController.history)
+    .post("", auth, WorkoutLogController.createWorkoutLog)
 
 export default router;

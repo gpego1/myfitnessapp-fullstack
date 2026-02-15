@@ -1,11 +1,11 @@
 meta {
-  name: workoutlogs
+  name: workoutlogs postt
   type: http
-  seq: 5
+  seq: 9
 }
 
 post {
-  url: http://localhost:8080/workouts
+  url: http://localhost:8080/workoutexercises
   body: json
   auth: bearer
 }
@@ -16,11 +16,16 @@ auth:bearer {
 
 body:json {
   {
-    "title": "Upper Body Strength",
-    "level": "Intermediate",
-    "muscleGroup": "Chest & Back",
-    "description": "Focus on upper body muscles, strength training",
-    "dayOfWeek": "Monday"
+    "_id": "64a3f8e2b3c4a1234567894c",
+    "workout": {
+      "_id": "6992426ff8da77c951e0284d"
+    },
+    "exercise": {
+      "_id": "699242acf8da77c951e02851"
+    },
+    "sets": 3,
+    "load": 40,
+    "order": 1
   }
   
 }

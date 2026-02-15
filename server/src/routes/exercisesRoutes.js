@@ -161,10 +161,11 @@ const router = express.Router();
  */
 
 router  
-    .get("/:id", ExerciseController.getExerciseById, auth)
-    .get("", ExerciseController.getExerciseByMuscleTargetOrName, auth, paginate)
-    .post("", ExerciseController.createExercise, auth)
-    .put("/:id", ExerciseController.updateExercises, auth)
-    .delete("/:id", ExerciseController.deleteExercises, auth)
+    .get("", auth, ExerciseController.getAllExercises)
+    .get("/:id", auth, ExerciseController.getExerciseById)
+    .get("", auth, ExerciseController.getExerciseByMuscleTargetOrName, paginate)
+    .post("", auth, ExerciseController.createExercise)
+    .put("/:id", auth, ExerciseController.updateExercises)
+    .delete("/:id", auth, ExerciseController.deleteExercises)
 
 export default router;

@@ -88,7 +88,7 @@ const router = express.Router();
  */
 
 router
-    .get("/summary/:userId", MealsController.getDailySummary, auth, paginate)
-    .post("", MealsController.createMeal, auth)
+    .get("/summary/:userId", auth, MealsController.getDailySummary, paginate)
+    .post("", auth,MealsController.createMeal)
 
 export default router;

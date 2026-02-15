@@ -1,11 +1,11 @@
 meta {
-  name: workoutlogs
+  name: workoutexercises copy
   type: http
-  seq: 5
+  seq: 8
 }
 
 post {
-  url: http://localhost:8080/workouts
+  url: http://localhost:8080/exercises
   body: json
   auth: bearer
 }
@@ -16,11 +16,12 @@ auth:bearer {
 
 body:json {
   {
-    "title": "Upper Body Strength",
-    "level": "Intermediate",
-    "muscleGroup": "Chest & Back",
-    "description": "Focus on upper body muscles, strength training",
-    "dayOfWeek": "Monday"
+    "name": "Bench Press",
+    "description": "Classic chest exercise using barbell",
+    "muscleTarget": "Chest",
+    "equipment": "Barbell",
+    "videoUrl": "https://youtu.be/example",
+    "imageUrl":"bhwuhswujjwhiou"
   }
   
 }
