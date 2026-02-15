@@ -120,7 +120,7 @@ JWT_SECRET=suachavesecreta
 
 npm run dev
 
-Servidor disponível em http://localhost:3000
+Servidor disponível em http://localhost:8080
 
 ------------------------------------------------------------------------
 
