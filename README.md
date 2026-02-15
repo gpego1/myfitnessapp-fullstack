@@ -1,32 +1,76 @@
-# 🏋️ FitForce a Fitness Tracker — Full Stack Application
+# 🏋️ FitForce Fitness Tracker — Full Stack Application
 
-Aplicação full stack para acompanhamento de treinos, alimentação e evolução corporal, permitindo ao usuário registrar atividades físicas, refeições e progresso ao longo do tempo através de um dashboard interativo.
+Full stack application for tracking workouts, nutrition, and body progress, allowing users to record physical activities, meals, and personal evolution over time through an interactive dashboard.
 
-Projeto desenvolvido com foco em aprendizado prático de arquitetura full stack, autenticação, consumo de APIs, visualização de dados e boas práticas de desenvolvimento.
+This project was developed with a focus on hands-on learning of full stack architecture, authentication, API consumption, data visualization, and modern development best practices.
 
 ---
 
-## 🚀 Funcionalidades
+## 🚀 Features
 
-### 👤 Autenticação
-- Registro de usuário
-- Login com JWT
-- Proteção de rotas
+### 👤 Authentication
+- User registration
+- JWT login
+- Protected routes
 
-### 🏃 Treinos
-- Criar, listar, editar e remover treinos
-- Organização por grupo muscular
-- Histórico de atividades
+---
 
-### 🍽 Alimentação
-- Registro de refeições
-- Controle de calorias e macronutrientes
+### 🏃 Workouts
+- Create, list, edit, and delete workouts
+- Organization by muscle group
+- Activity history
 
-### ⚖️ Progresso corporal
-- Registro de peso e BF%
-- Histórico por data
+---
+
+### 🍽 Nutrition
+- Meal tracking
+- Calorie and macronutrient control
+
+---
+
+### ⚖️ Body Progress
+- Weight and body fat percentage tracking
+- Date-based history
+
+---
 
 ### 📊 Dashboard
-- Gráficos de evolução
-- Visualização de progresso
-- Resumo de atividades
+- Progress charts
+- Performance visualization
+- Activity summary
+
+---
+
+## 🧠 Learning Goals
+
+This project focuses on:
+
+- Full Stack architecture
+- REST API development
+- JWT authentication
+- MongoDB data modeling
+- Frontend integration with APIs
+- State management
+- Clean code and scalability
+- Real-world CRUD flows
+
+---
+
+## 🛠 Tech Stack
+
+### Backend
+- Node.js
+- Express
+- MongoDB
+- Mongoose
+- JWT
+- REST API
+
+### Frontend
+- React 18
+- Vite
+- React Router DOM
+- CSS Modules
+- JavaScript
+
+
