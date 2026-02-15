@@ -3,7 +3,8 @@ import workouts from "./workoutRoutes.js";
 import authorization from "./authRoutes.js";
 import exercises from "./exercisesRoutes.js"
 import workoutExercises from "./workoutExerciseRoutes.js";
-import workoutLogs from "./workoutLogsRoutes.js"
+import workoutLogs from "./workoutLogsRoutes.js";
+import meals from "./mealsRouter.js";
 
 const routes = (app) => {
   app.get("/", (req, res) => {
@@ -17,7 +18,7 @@ const routes = (app) => {
   app.use("/exercises", exercises);
   app.use("/workoutexercises", workoutExercises);
   app.use("/workoutlogs", workoutLogs);
-
+  app.use("/meals", meals);
 };
 
 export default routes;

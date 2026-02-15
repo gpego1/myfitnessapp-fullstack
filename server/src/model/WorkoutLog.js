@@ -3,6 +3,7 @@ import autopopulate from "mongoose-autopopulate";
 
 const workoutLogSchema = mongoose.Schema (
     {
+        id: {type: mongoose.Types.ObjectId},
         user: {
             type: mongoose.Schema.Types.ObjectId,
             autopopulate: true,
