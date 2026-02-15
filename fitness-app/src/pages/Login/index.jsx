@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FaEye } from "react-icons/fa";
 import api from '../../api';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -9,6 +10,7 @@ export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -70,17 +72,27 @@ export default function Login() {
               onChange={handleChange}
               required
             />
-            
+            <div className={styles.passwordWrapper}>
             <Input
               label="Senha"
-              type="password"
+              type={showPassword ? "text" : "password"}
               name="password"
               placeholder="••••••••"
               value={formData.password}
               onChange={handleChange}
+              onBlur={() => setShowPassword(false)}
               required
             />
-
+            <button
+              type="button"
+              className={styles.eyeButton}
+              onMouseDown={(e) => e.preventDefault()}
+              onClick={() => setShowPassword(prev => !prev)}
+            >
+              <FaEye />
+            </button>
+            </div>
+        
             <div className={styles.actions}>
               <Button text="Entrar" type="submit" variant="primary" fullWidth />
               <p className={styles.register}>
