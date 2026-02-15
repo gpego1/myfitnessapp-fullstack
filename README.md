@@ -72,5 +72,9 @@ This project focuses on:
 - React Router DOM
 - CSS Modules
 - JavaScript
+ ---
+ ## Database Schemas
+
+ <img width="768" height="512" alt="schemas img" src="https://github.com/user-attachments/assets/a7fa0675-43e8-4b13-8cdd-bd63972d2d6a" />
 
 
