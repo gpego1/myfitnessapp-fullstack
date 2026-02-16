@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
+import Select from '../../components/Select';
 import styles from './styles.module.css';
+
 
 export default function Register() {
   const navigate = useNavigate();
@@ -15,7 +17,6 @@ export default function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Mock registration - redirect to dashboard
     navigate('/dashboard');
   };
 
@@ -80,6 +81,21 @@ export default function Register() {
               onChange={handleChange}
               required
             />
+
+             <div style={{ maxWidth: "400px", margin: "0 auto" }}>
+              <label>Goal:</label>
+            <Select
+              variant="primary"
+              fullWidth
+              options={[
+                { value: "lose-fat", label: "Lose fat" },
+                { value: "hipertrophy", label: "Hipertrophy" },
+                { value: "cutting", label: "Cutting" },
+                { value: "bulking", label: "Bulking" },
+                { value: "maintenance", label: "Maintenance" }
+              ]}
+            />
+          </div>
 
             <div className={styles.actions}>
               <Button text="Criar Conta" type="submit" variant="primary" fullWidth />

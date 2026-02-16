@@ -22,6 +22,16 @@ const AuthController = {
     } catch (error) {
       return res.status(401).json({ error: error.message });
     }
+  },
+
+  async getProfile(req, res, next) {
+    try {
+      const userId = await req.userId;
+      const userResponse = await AuthService.myProfile(userId);
+      res.status(200).json(userResponse);
+    } catch (error) {
+      next(error);
+    }
   }
 };
 

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import api from '../../api/index.js';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Card from '../../components/Card';
 import Input from '../../components/Input';
@@ -8,14 +9,19 @@ import styles from './styles.module.css';
 export default function Profile() {
   const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
-  const [profile, setProfile] = useState({
-    name: 'Atleta FitForce',
-    email: 'atleta@fitforce.com',
-    age: '28',
-    weight: '75',
-    height: '175',
-    goal: 'Hipertrofia'
-  });
+  const [profile, setProfile] = useState(null);
+
+  useEffect(() => {
+    async function loadProfile() {
+      try {
+        const { data } = await api.get("/auth/me");
+        setProfile(data);
+      } catch (error) {
+        alert("Erro ao cadastrar perfil");
+      }
+    }
+    loadProfile();
+  }, []);
 
   const handleChange = (e) => {
     setProfile({
@@ -26,13 +32,14 @@ export default function Profile() {
 
   const handleSave = () => {
     setIsEditing(false);
-    // Mock save
     alert('Perfil atualizado com sucesso!');
   };
 
   const handleLogout = () => {
     navigate('/');
   };
+
+  if (!profile) return null;
 
   return (
     <div className={styles.container}>

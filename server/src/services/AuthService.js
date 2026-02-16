@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 import { User } from "../model/index.js";
 import bcrypt from "bcryptjs"
 import NotFound from "../errors/NotFound.js";
+import { UserResponseDTO } from "../dto/UserDTO.js";
 
 class AuthService {
     static async register(data) {
@@ -28,6 +29,22 @@ class AuthService {
             { expiresIn: "1d" },
         );
         return { user, token };
+    }
+
+    static async myProfile(userId) {
+        const user = await User.findById(userId).lean();
+        if (!user) throw new NotFound("The user doesnt exists");
+
+        const userResponse = new UserResponseDTO(user);
+
+        return {
+            name: userResponse.name,
+            email: userResponse.email,
+            age: userResponse.age,
+            weight: userResponse.weight,
+            height: userResponse.height,
+            goal: userResponse.goal
+        }
     }
 }
 export default AuthService;
