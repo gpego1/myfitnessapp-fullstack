@@ -5,6 +5,7 @@ import paginate from "../middlewares/paginate.js";
 
 const router = express.Router();
 
-router.get("",auth, DashboardController.getDashboard, paginate);
+router
+    .get("",auth, DashboardController.getDashboard, paginate)
 
 export default router;

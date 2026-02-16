@@ -1,14 +1,18 @@
 import mongoose from "mongoose";
+import autopopulate from 'mongoose-autopopulate';
+
 
 const workouExerciseSchema = mongoose.Schema(
     {
         id: {type: mongoose.Schema.ObjectId},
-        exercise: {
+        exercise: [
+        {
             type: mongoose.Types.ObjectId,
             autopopulate: true,
             ref: "exercises",
             required: [true, "The exercise is required"]
-        },
+          }
+        ],
         workout:{
             type: mongoose.Types.ObjectId,
             autopopulate: true,
@@ -20,5 +24,7 @@ const workouExerciseSchema = mongoose.Schema(
         order: {type: Number, required: [true, "The order is required"]}
     }
 );
+
+workouExerciseSchema.plugin(autopopulate);
 const workoutExercises = mongoose.model("workouExercises", workouExerciseSchema);
 export default workoutExercises;

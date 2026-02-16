@@ -10,7 +10,11 @@ const workoutSchema = new mongoose.Schema(
             required: [true, "Level of the workout is required"]},
         muscleGroup: {type: String, required: [true, "The muscle gorup(s) are required"]},
         description: {type: String, required: [true, "Description is required"]},
-        dayOfWeek: {type: String, required: [true, "Days of week are required"]},
+        dayOfWeek: {
+            type: String,
+            enum: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            required: [true, "Days of week are required"]
+        },
     },
     {timestamp: true}
 );
