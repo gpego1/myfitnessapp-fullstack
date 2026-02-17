@@ -10,6 +10,11 @@ export default function Profile() {
   const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
   const [profile, setProfile] = useState(null);
+  const [stats, setStats] = useState({
+    totalWorkouts: 0,
+    totalExercises: 0,
+    totalTime: "12H"
+  });
 
   useEffect(() => {
     async function loadProfile() {
@@ -22,6 +27,20 @@ export default function Profile() {
     }
     loadProfile();
   }, []);
+
+  useEffect(() => {
+    async function loadStats() {
+    try {
+      const { data } = await api.get("/workoutlogs/history");
+      console.log(data)
+      setStats(data);
+    } catch (error) {
+      alert("Erro ao carregar estatísticas")
+    }
+  }
+  loadStats();
+  }, []);
+  
 
   const handleChange = (e) => {
     setProfile({
@@ -154,20 +173,22 @@ export default function Profile() {
         <Card>
           <div className={styles.section}>
             <h3 className={styles.sectionTitle}>ESTATÍSTICAS</h3>
+            {stats && (
             <div className={styles.statsGrid}>
               <div className={styles.statBox}>
-                <div className={styles.statNumber}>24</div>
+                <div className={styles.statNumber}>{stats.totalWorkouts}</div>
                 <div className={styles.statLabel}>Treinos Completos</div>
               </div>
               <div className={styles.statBox}>
-                <div className={styles.statNumber}>156</div>
+                <div className={styles.statNumber}>{stats.totalExercises}</div>
                 <div className={styles.statLabel}>Exercícios Realizados</div>
               </div>
               <div className={styles.statBox}>
-                <div className={styles.statNumber}>12h</div>
+                <div className={styles.statNumber}>{stats.totalTime}</div>
                 <div className={styles.statLabel}>Tempo Total</div>
               </div>
             </div>
+            )}
           </div>
         </Card>
 

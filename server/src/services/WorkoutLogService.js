@@ -20,23 +20,34 @@ export default class WorkoutLogService {
     }
 
     static async history(userId) {
-        console.log(userId);
-        const result = await workoutLog
+        const logs = await workoutLog
         .find({ user: new mongoose.Types.ObjectId(userId) })
         .populate("workoutExercises")
-        .select("-user")
-        .sort({ completedAt: -1 })
         .lean();
 
-        console.log(result)
+        if (!logs.length) {
+            return {
+            totalWorkouts: 0,
+            totalExercises: 0,
+            totalTime: "0H"
+        };
+    }
+    const totalWorkouts = logs.length;
 
-        // if (!result.length) return [];
+    const totalExercises = logs.reduce((acc, log) => {
+        return acc + (log.workoutExercises?.length || 0);
+    }, 0);
 
-        return result.map(log => ({
-                workoutExercises: log.workoutExercises,
-                duration: log.duration,
-                caloriesBurned: log.caloriesBurned,
-                completedAt: log.completedAt
-            }));
+    const totalMinutes = logs.reduce((acc, log) => {
+        return acc + (log.duration || 0);
+    }, 0);
+
+    const totalHours = Math.floor(totalMinutes / 60);
+
+        return {
+            totalWorkouts,
+            totalExercises, 
+            totalTime: `${totalHours}H`
+        }
     }
 }
