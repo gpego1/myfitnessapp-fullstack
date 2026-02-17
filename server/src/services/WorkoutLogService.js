@@ -1,35 +1,42 @@
-import { workoutLog } from "../model/index.js";
+import { User, workoutExercises, workoutLog } from "../model/index.js";
 import NotFound from "../errors/NotFound.js";
+import mongoose from "mongoose";
 
 export default class WorkoutLogService {
     static async create(data) {
-        const { user, workout } = data;
+        const { user, workoutExercises: exercisesIds } = data;
 
-        const exists = workoutLog.findOne({ user, workout });
+        const userExists = await User.exists({ _id: user });
+        if(!userExists) throw new NotFound("User not found");
 
-        if (exists) {
-            return await workoutLog.create(data);
-        } else {
-            throw new NotFound("Cannot find workout or user");
-        }
+        const exercisesExists = await workoutExercises.find({
+            _id: { $in: exercisesIds }
+        });
+
+
+        if (!exercisesExists.length) throw new NotFound("Exercises doesnt exists");
+
+        return await workoutLog.create(data);
     }
 
     static async history(userId) {
+        console.log(userId);
         const result = await workoutLog
-        .find({ user: userId })
-        .populate("workout")
+        .find({ user: new mongoose.Types.ObjectId(userId) })
+        .populate("workoutExercises")
         .select("-user")
+        .sort({ completedAt: -1 })
+        .lean();
 
-        if (!result.length) return [];
+        console.log(result)
 
-        return {
-            userId,
-            workouts: result.map(log => ({
-                workout: log.workout,
+        // if (!result.length) return [];
+
+        return result.map(log => ({
+                workoutExercises: log.workoutExercises,
                 duration: log.duration,
-                caloriesBurned: log.caloiresBurned,
+                caloriesBurned: log.caloriesBurned,
                 completedAt: log.completedAt
-            }))
-        };
+            }));
     }
 }

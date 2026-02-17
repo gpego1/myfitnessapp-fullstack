@@ -4,21 +4,21 @@ import WorkoutLogService from "../services/WorkoutLogService.js";
 
 export class WorkoutLogController {
 
-    static async getWorkoutLogByUserIdAndWorkoutId(req, res, next) {
+    static async getWorkoutLogByUserIdAndWorkoutExercisesId(req, res, next) {
         try {
-            const { userId, workoutId } = req.query;
+            const { userId, workoutExercisesId } = req.query;
 
-            if (!userId || !workoutId) {
+            if (!userId || !weId) {
                 throw new NotFound("Could not found user or workout");
             }
 
             const result = await workoutLog
             .find({
                 user: userId, 
-                workout: workoutId 
+                workoutExercises: workoutExercisesId
             })
             .populate("user")
-            .populate("workout");
+            .populate("workoutExercises");
 
             res.status(200).json(result);
         } catch(error) {
@@ -37,8 +37,7 @@ export class WorkoutLogController {
 
     static async history(req, res, next) {
         try {
-            const userId  = req.params.userId;
-            const result = await WorkoutLogService.history(userId);
+            const result = await WorkoutLogService.history(req.userId);
             res.status(200).json(result);
         } catch (error) {
             next(error);

@@ -7,14 +7,14 @@ const workouExerciseSchema = mongoose.Schema(
         id: {type: mongoose.Schema.ObjectId},
         exercise: [
         {
-            type: mongoose.Types.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             autopopulate: true,
             ref: "exercises",
             required: [true, "The exercise is required"]
           }
         ],
         workout:{
-            type: mongoose.Types.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             autopopulate: true,
             required: [true, "The workout is required"],
             ref: "workouts"
@@ -26,5 +26,5 @@ const workouExerciseSchema = mongoose.Schema(
 );
 
 workouExerciseSchema.plugin(autopopulate);
-const workoutExercises = mongoose.model("workouExercises", workouExerciseSchema);
+const workoutExercises = mongoose.model("workoutexercises", workouExerciseSchema);
 export default workoutExercises;
