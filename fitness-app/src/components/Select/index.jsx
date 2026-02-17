@@ -1,12 +1,22 @@
 import styles from "./styles.module.css";
 
 export default function Select({
+  label,
   options = [],
   variant = "primary",
-  fullWidth = false
+  fullWidth = false,
+  name,
+  value,
+  onChange
 }) {
   return (
+    <div>
+    {label && <label>{label}</label>}
+
     <select
+      name={name}
+      value={value}
+      onChange={onChange}
       className={`${styles.select} ${styles[variant]} ${
         fullWidth ? styles.fullWidth : ""
       }`}
@@ -17,5 +27,6 @@ export default function Select({
         </option>
       ))}
     </select>
+     </div>
   );
 }

@@ -1,3 +1,4 @@
+import api from '../../api/index.js';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Input from '../../components/Input';
@@ -12,13 +13,13 @@ export default function Register() {
     name: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    age: '',
+    height: '',
+    weight: '',
+    goal: ''
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    navigate('/dashboard');
-  };
 
   const handleChange = (e) => {
     setFormData({
@@ -27,86 +28,70 @@ export default function Register() {
     });
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    console.log(formData);
+    if (formData.password != formData.confirmPassword) {
+      alert("Passwords are not the same");
+    }
+    
+    try {
+      await api.post("/auth/register", {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        age: Number(formData.age),
+        height: Number(formData.height),
+        weight: Number(formData.weight),
+        goal: formData.goal
+      })
+      navigate('/login');
+    } catch (error) {
+      console.log(error);
+      alert("Failed to register");
+    }
+  };
+
   return (
     <div className={styles.container}>
-      <div className={styles.background}>
-        <div className={styles.grid}></div>
-      </div>
-      
       <div className={styles.content}>
         <div className={styles.registerBox}>
-          <div className={styles.header}>
-            <span className={styles.icon}>🔥</span>
-            <h1 className={styles.title}>JUNTE-SE AO FITFORCE</h1>
-            <p className={styles.subtitle}>Comece sua jornada de transformação hoje</p>
-          </div>
 
           <form onSubmit={handleSubmit} className={styles.form}>
-            <Input
-              label="Nome Completo"
-              type="text"
-              name="name"
-              placeholder="Seu nome"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-            
-            <Input
-              label="Email"
-              type="email"
-              name="email"
-              placeholder="seu@email.com"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-            
-            <Input
-              label="Senha"
-              type="password"
-              name="password"
-              placeholder="••••••••"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
-            
-            <Input
-              label="Confirmar Senha"
-              type="password"
-              name="confirmPassword"
-              placeholder="••••••••"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              required
-            />
 
-             <div style={{ maxWidth: "400px", margin: "0 auto" }}>
-              <label>Goal:</label>
+            <Input label="Nome" name="name" value={formData.name} onChange={handleChange} required />
+
+            <Input label="Email" type="email" name="email" value={formData.email} onChange={handleChange} required />
+
+            <Input label="Senha" type="password" name="password" value={formData.password} onChange={handleChange} required />
+
+            <Input label="Confirmar Senha" type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} required />
+
+            <Input label="Idade" type="number" name="age" value={formData.age} onChange={handleChange} required />
+
+            <Input label="Altura (cm)" type="number" name="height" value={formData.height} onChange={handleChange} required />
+
+            <Input label="Peso (kg)" type="number" name="weight" value={formData.weight} onChange={handleChange} required />
+
             <Select
-              variant="primary"
-              fullWidth
+              label="Objetivo"
+              name="goal"
+              value={formData.goal}
+              onChange={handleChange}
               options={[
-                { value: "lose-fat", label: "Lose fat" },
-                { value: "hipertrophy", label: "Hipertrophy" },
-                { value: "cutting", label: "Cutting" },
-                { value: "bulking", label: "Bulking" },
-                { value: "maintenance", label: "Maintenance" }
+                { value: "Lose fat", label: "Lose fat" },
+                { value: "Hypertrophy", label: "Hypertrophy" },
+                { value: "Cutting", label: "Cutting" },
+                { value: "Bulking", label: "Bulking" },
+                { value: "Maintenance", label: "Maintenance" }
               ]}
             />
-          </div>
 
-            <div className={styles.actions}>
-              <Button text="Criar Conta" type="submit" variant="primary" fullWidth />
-              <p className={styles.login}>
-                Já tem conta? 
-                <span onClick={() => navigate('/')} className={styles.link}>
-                  Faça login
-                </span>
-              </p>
-            </div>
+            <Button text="Criar Conta" type="submit" variant="primary" fullWidth />
+
           </form>
+
         </div>
       </div>
     </div>
