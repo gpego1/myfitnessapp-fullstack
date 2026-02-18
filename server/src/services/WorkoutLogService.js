@@ -28,7 +28,8 @@ export default class WorkoutLogService {
             return {
             totalWorkouts: 0,
             totalExercises: 0,
-            totalTime: "0H"
+            totalTime: "0H",
+            activeDays: 0
         };
     }
     const totalWorkouts = logs.length;
@@ -42,11 +43,13 @@ export default class WorkoutLogService {
     }, 0);
 
     const totalHours = Math.floor(totalMinutes / 60);
+    const activeDays = Math.floor(totalHours/24);
 
         return {
             totalWorkouts,
             totalExercises, 
-            totalTime: `${totalHours}H`
+            totalTime: `${totalHours}H`,
+            activeDays: activeDays
         }
     }
 }
