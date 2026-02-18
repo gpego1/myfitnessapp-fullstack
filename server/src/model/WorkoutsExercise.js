@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import autopopulate from 'mongoose-autopopulate';
 
 
-const workouExerciseSchema = mongoose.Schema(
+const workoutExerciseSchema = mongoose.Schema(
     {
         id: {type: mongoose.Schema.ObjectId},
         exercise: [
@@ -25,6 +25,11 @@ const workouExerciseSchema = mongoose.Schema(
     }
 );
 
-workouExerciseSchema.plugin(autopopulate);
-const workoutExercises = mongoose.model("workoutexercises", workouExerciseSchema);
+workoutExerciseSchema.plugin(autopopulate);
+
+workoutExerciseSchema.path("exercise").validate(function (value) {
+    const unique = new Set(value.map(v => v.toString()));
+    return unique.size === value.length;
+}, "Exercises cannot be duplicated at the same workout");
+const workoutExercises = mongoose.model("workoutexercises", workoutExerciseSchema);
 export default workoutExercises;

@@ -8,6 +8,7 @@ export default function Workouts() {
   const navigate = useNavigate();
   const [filter, setFilter] = useState('Todos');
   const [workouts, setWorkouts] = useState([]);
+  const [exercises, setExercises] = useState([]);
 
   const categories = ['Todos', ...new Set(workouts.map(w => w.category))];
   
@@ -26,6 +27,25 @@ export default function Workouts() {
     }
     loadWorkouts();
   }, [])
+
+  useEffect(() => {
+    async function loadWorkoutExercises() {
+      if (workouts.length === 0) return;
+
+      const exercisesMap  = {};
+
+      for (const workout of workouts) {
+        try {
+          const { data } = await api.get(`/workoutexercises?workoutId=${workout._id}`);
+          exercisesMap[workout._id] = data;
+        } catch (error) {
+          console.error("Error loading exercises for workout", workout._id);
+        }
+      }
+      setExercises(exercisesMap);
+    }
+    loadWorkoutExercises();
+  }, [workouts]);
   
 
   return (
@@ -72,7 +92,7 @@ export default function Workouts() {
                   </span>
                   <span className={styles.metaItem}>
                     <span className={styles.metaIcon}>🏋️</span>
-                    {workout.title.length} exercícios
+                    {exercises[workout._id]?.length || 0} exercícios
                   </span>
                 </div>
                 <div className={styles.arrow}>→</div>

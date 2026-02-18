@@ -18,14 +18,12 @@ export class WorkoutExercisesController {
 
     static async getByWorkoutId(req, res, next) {
   try {
-    console.log("CHEGOU");
-
     const { workoutId } = req.query;
 
     const result =
       await workoutExerciseService.getWorkoutExercisesByWorkoutId(workoutId);
 
-    return res.status(200).json(result);
+    return res.status(200).json(result.exercise);
   } catch (error) {
     next(error);
   }
@@ -34,7 +32,7 @@ export class WorkoutExercisesController {
 
     static async createWorkoutExercises(req, res, next) {
         try {
-            const result = await workoutExercises.create(req.body)            ;
+            const result = await workoutExerciseService.create(req.body)            ;
             res.status(201).json(result);
         } catch (error) {
             next(error);

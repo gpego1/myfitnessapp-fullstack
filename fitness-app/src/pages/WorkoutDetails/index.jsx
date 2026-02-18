@@ -1,15 +1,17 @@
-import api from "../../api";
+import api from "../../api/index.js";
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
 import styles from "./styles.module.css";
 
+
 export default function WorkoutDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
 
   const [workout, setWorkout] = useState(null);
+  const [workoutExercises, setWorkoutExercises] = useState([]);
 
   useEffect(() => {
     async function loadWorkout() {
@@ -25,7 +27,19 @@ export default function WorkoutDetails() {
     loadWorkout();
   }, [id]);
 
-  if (!workout) return null;
+  useEffect(() => {
+    async function loadExercises(){
+      try {
+        const { data } = await api.get(`/workoutexercises?workoutId=${id}`);
+        setWorkoutExercises(data);
+      } catch(error) {
+        alert("Could not load exercises");
+      }
+    }
+    loadExercises();
+  }, [id]);
+
+   if (!workout) return null;
 
   return (
     <div className={styles.container}>
@@ -59,19 +73,19 @@ export default function WorkoutDetails() {
         <h2 className={styles.sectionTitle}>EXERCÍCIOS</h2>
 
         <div className={styles.exercisesList}>
-          {workout.exercises.map((exercise, index) => (
-            <Card key={exercise._id} className={styles.exerciseCard}>
-              <div className={styles.exerciseContent}>
-                <div className={styles.exerciseNumber}>{index + 1}</div>
+          {workoutExercises.map((exercise, index) => (
+          <Card key={exercise._id} className={styles.exerciseCard}>
+            <div className={styles.exerciseContent}>
+              <div className={styles.exerciseNumber}>{index + 1}</div>
 
-                <div>
-                  <h3>{exercise.name}</h3>
-                  <span>🎯 {exercise.muscleTarget}</span>
-                  <span> 🔧 {exercise.equipment}</span>
-                </div>
+              <div>
+                <h3>{exercise.name}</h3>
+                <span>🎯 {exercise.muscleTarget}</span>
+                <span> 🔧 {exercise.equipment}</span>
               </div>
-            </Card>
-          ))}
+            </div>
+          </Card>
+        ))}
         </div>
       </div>
     </div>
