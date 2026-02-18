@@ -1,4 +1,5 @@
 import { workoutExercises } from "../model/index.js";
+import { workoutExerciseService } from "../services/WorkoutExerciseService.js";
 
 export class WorkoutExercisesController {
 
@@ -14,6 +15,22 @@ export class WorkoutExercisesController {
             next(error);
         }
     }
+
+    static async getByWorkoutId(req, res, next) {
+  try {
+    console.log("CHEGOU");
+
+    const { workoutId } = req.query;
+
+    const result =
+      await workoutExerciseService.getWorkoutExercisesByWorkoutId(workoutId);
+
+    return res.status(200).json(result);
+  } catch (error) {
+    next(error);
+  }
+}
+
 
     static async createWorkoutExercises(req, res, next) {
         try {

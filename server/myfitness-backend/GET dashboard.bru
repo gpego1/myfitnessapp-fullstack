@@ -5,13 +5,31 @@ meta {
 }
 
 get {
-  url: http://localhost:8080/workoutlogs/history
+  url: http://localhost:8080/workoutexercises?workoutId=6994f3e38b32f17b95c79677
   body: json
   auth: bearer
 }
 
+params:query {
+  workoutId: 6994f3e38b32f17b95c79677
+}
+
 auth:bearer {
-  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OTNiMzZiYmYzMTY4NTM5YmRiZmFiZiIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzcxMjg5MTE1LCJleHAiOjE3NzEzNzU1MTV9.dlbl944CRcIzdEJ_6ESOA69Om9QqoQ9Q84IXczdK2aQ
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OTRkOGU5YTQzYjAyOTM3MmU0NTU3MSIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzcxMzYyNTk4LCJleHAiOjE3NzE0NDg5OTh9.ExU35-EDEhd2JX-bXGZuvJIOk6ZVUeOswQ9aoARBWo4
+}
+
+body:json {
+  
+    {
+      "title": "Mobilidade Ativa",
+      "category": "Mobility",
+      "level": "Beginner",
+      "muscleGroup": "Corpo inteiro",
+      "description": "Trabalho de amplitude de movimento, flexibilidade e preparação articular para melhor performance.",
+      "dayOfWeek": "Saturday"
+    }
+  
+  
 }
 
 settings {

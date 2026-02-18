@@ -1,5 +1,5 @@
 import express from "express";
-import { WorkoutController } from "../controllers/workoutController.js";
+import { WorkoutController } from "../controllers/WorkoutController.js";
 import paginate from "../middlewares/paginate.js";
 import auth from "../middlewares/authMiddleware.js"
 

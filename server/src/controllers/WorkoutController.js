@@ -36,13 +36,8 @@ static async getWorkoutByTitle(req, res, next) {
 
  static async createWorkout(req, res, next) {
     try {
-        let createdWorkout = new workouts(req.body);
-        const result = await createdWorkout.save();
-
-        res.status(201).send({
-            message: "Succesfully created Entity",
-            obj: result.toJSON()
-        })
+        const result = await workouts.create(req.body);
+        res.status(201).json(result)
     } catch (error) {
         next(error);
     }

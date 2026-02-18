@@ -1,18 +1,32 @@
-import { useState } from 'react';
+import api from '../../api/index.js';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Card from '../../components/Card';
-import { workouts } from '../../mock/workouts';
 import styles from './styles.module.css';
 
 export default function Workouts() {
   const navigate = useNavigate();
   const [filter, setFilter] = useState('Todos');
+  const [workouts, setWorkouts] = useState([]);
 
   const categories = ['Todos', ...new Set(workouts.map(w => w.category))];
   
   const filteredWorkouts = filter === 'Todos' 
     ? workouts 
     : workouts.filter(w => w.category === filter);
+
+  useEffect(() => {
+    async function loadWorkouts() {
+      try {
+        const { data } = await api.get("/workouts");
+        setWorkouts(data);
+      } catch (error) {
+        alert("Could not load workouts");
+      }
+    }
+    loadWorkouts();
+  }, [])
+  
 
   return (
     <div className={styles.container}>
@@ -36,15 +50,15 @@ export default function Workouts() {
       <div className={styles.grid}>
         {filteredWorkouts.map((workout, index) => (
           <Card 
-            key={workout.id}
-            onClick={() => navigate(`/workouts/${workout.id}`)}
+            key={workout._id}
+            onClick={() => navigate(`/workouts/${workout._id}`)}
             className={styles.workoutCard}
             style={{ animationDelay: `${index * 0.1}s` }}
           >
             <div className={styles.cardContent}>
               <div className={styles.cardHeader}>
                 <span className={styles.badge}>{workout.category}</span>
-                <span className={styles.difficulty}>{workout.difficulty}</span>
+                <span className={styles.difficulty}>{workout.level}</span>
               </div>
               
               <h2 className={styles.workoutTitle}>{workout.title}</h2>
@@ -54,11 +68,11 @@ export default function Workouts() {
                 <div className={styles.meta}>
                   <span className={styles.metaItem}>
                     <span className={styles.metaIcon}>⏱️</span>
-                    {workout.duration}
+                    {workout.title}
                   </span>
                   <span className={styles.metaItem}>
                     <span className={styles.metaIcon}>🏋️</span>
-                    {workout.exercises.length} exercícios
+                    {workout.title.length} exercícios
                   </span>
                 </div>
                 <div className={styles.arrow}>→</div>

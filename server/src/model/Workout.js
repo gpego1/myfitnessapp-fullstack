@@ -2,8 +2,13 @@ import mongoose from "mongoose";
 
 const workoutSchema = new mongoose.Schema(
     {
-        id: {type: mongoose.Types.ObjectId},
+        id: {type: mongoose.Schema.Types.ObjectId},
         title: {type: String, required: [true, "The title is required"]},
+        category: {
+            type: String,
+            enum: ["All", "Strength", "Cardio", "Functional", "Mobility"],
+            required: true
+        },
         level: {
             type: String,
             enum: ["Beginner", "Intermediate", "Advanced"],
@@ -16,7 +21,7 @@ const workoutSchema = new mongoose.Schema(
             required: [true, "Days of week are required"]
         },
     },
-    {timestamp: true}
+    {timestamps: true}
 );
 
 const workouts = mongoose.model("workouts", workoutSchema)

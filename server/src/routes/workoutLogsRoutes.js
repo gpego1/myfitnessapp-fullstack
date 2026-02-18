@@ -113,7 +113,7 @@ const router = express.Router();
 
 
 router
-    .get("/user/workoutExercises", auth, WorkoutLogController.getWorkoutLogByUserIdAndWorkoutExercisesId)
+    .get("/search", auth, WorkoutLogController.getWorkoutLogByUserIdOrWorkoutExercisesId)
     .get("/history", auth, WorkoutLogController.history)
     .post("", auth, WorkoutLogController.createWorkoutLog)
 

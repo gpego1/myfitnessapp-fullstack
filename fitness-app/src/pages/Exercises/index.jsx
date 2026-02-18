@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import api from "../../api/index.js"
+import { useState, useEffect } from 'react';
 import Card from '../../components/Card';
-import { exercises } from '../../mock/exercises';
 import styles from './styles.module.css';
 
 export default function Exercises() {
   const [search, setSearch] = useState('');
   const [selectedMuscle, setSelectedMuscle] = useState('Todos');
+  const [exercises, setExercises] = useState([]);
+
 
   const muscles = ['Todos', ...new Set(exercises.map(ex => ex.muscleTarget))];
 
@@ -14,6 +16,18 @@ export default function Exercises() {
     const matchesMuscle = selectedMuscle === 'Todos' || exercise.muscleTarget === selectedMuscle;
     return matchesSearch && matchesMuscle;
   });
+
+  useEffect(() => {
+    async function loadExercises() {
+      try {
+      const { data } = await api.get("/exercises");
+      setExercises(data);
+    } catch (error) {
+      alert("Cannot find any exercise")
+    }
+   }
+   loadExercises();
+  }, [])
 
   return (
     <div className={styles.container}>
@@ -53,7 +67,7 @@ export default function Exercises() {
       <div className={styles.grid}>
         {filteredExercises.map((exercise, index) => (
           <Card 
-            key={exercise.id}
+            key={exercise._id}
             className={styles.exerciseCard}
             style={{ animationDelay: `${index * 0.05}s` }}
           >

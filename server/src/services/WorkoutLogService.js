@@ -13,7 +13,6 @@ export default class WorkoutLogService {
             _id: { $in: exercisesIds }
         });
 
-
         if (!exercisesExists.length) throw new NotFound("Exercises doesnt exists");
 
         return await workoutLog.create(data);
