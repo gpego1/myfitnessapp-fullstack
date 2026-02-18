@@ -1,20 +1,59 @@
+import api from "../../api/index.js";
 import { useNavigate } from 'react-router-dom';
 import Card from '../../components/Card';
 import Button from '../../components/Button';
-import { workouts } from '../../mock/workouts';
-import { exercises } from '../../mock/exercises';
 import styles from './styles.module.css';
+import { useState, useEffect } from 'react';
+
 
 export default function Dashboard() {
   const navigate = useNavigate();
+  const [workouts, setWorkouts ] = useState([]);
+  const [exercises, setExercises] = useState([]);
+  const [stats, setStats] = useState({
+    totalWorkouts: 0,
+    totalExercises: 0,
+    totalTime: "12H"
+  });
   
-  const stats = {
-    totalWorkouts: workouts.length,
-    totalExercises: exercises.length,
-    activeDays: 5
-  };
 
   const recentWorkouts = workouts.slice(0, 3);
+
+  useEffect(() => {
+    async function loadWorkouts() {
+      try {
+        const { data } = await api.get("/workouts");
+        setWorkouts(data);
+      } catch(error) {
+        console.error("Could not load workouts: ", error)
+      }
+    }
+    loadWorkouts();
+  }, []);
+
+  useEffect(() => {
+    async function loadExercises() {
+      try {
+        const { data } = await api.get("/exercises");
+        setExercises(data);
+      } catch(error) {
+        console.error("Could not load exercises: ", error)
+      }
+    }
+    loadExercises();
+  }, [])
+
+  useEffect(() => {
+    async function loadStats() {
+      try {
+        const { data } = await api.get("/workoutlogs/history");
+        setStats(data);
+    } catch (error) {
+      console.error("Could not load stats");
+      }
+    }
+    loadStats();
+  }, [])
 
   return (
     <div className={styles.container}>
@@ -30,7 +69,7 @@ export default function Dashboard() {
           <div className={styles.statCard}>
             <div className={styles.statIcon}>💪</div>
             <div className={styles.statContent}>
-              <div className={styles.statNumber}>{stats.totalWorkouts}</div>
+              <div className={styles.statNumber}>{workouts.length}</div>
               <div className={styles.statLabel}>Treinos Disponíveis</div>
             </div>
           </div>
@@ -40,7 +79,7 @@ export default function Dashboard() {
           <div className={styles.statCard}>
             <div className={styles.statIcon}>🏋️</div>
             <div className={styles.statContent}>
-              <div className={styles.statNumber}>{stats.totalExercises}</div>
+              <div className={styles.statNumber}>{exercises.length}</div>
               <div className={styles.statLabel}>Exercícios no Banco</div>
             </div>
           </div>
@@ -70,8 +109,8 @@ export default function Dashboard() {
         <div className={styles.workoutsGrid}>
           {recentWorkouts.map((workout) => (
             <Card 
-              key={workout.id} 
-              onClick={() => navigate(`/workouts/${workout.id}`)}
+              key={workout._id} 
+              onClick={() => navigate(`/workouts/${workout._id}`)}
             >
               <div className={styles.workoutCard}>
                 <div className={styles.workoutHeader}>
