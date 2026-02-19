@@ -4,14 +4,14 @@ meta {
   seq: 5
 }
 
-post {
-  url: http://localhost:8080/workouts
+get {
+  url: http://localhost:8080/workoutexercises
   body: json
   auth: bearer
 }
 
 auth:bearer {
-  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OTIwZTZmYTgxNWJkMDQwOTZhNWI1NCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3MTE5MjU2OSwiZXhwIjoxNzcxMjc4OTY5fQ.ZVL6GUvLsMg_UDanKaDedaq4rWE7Y3tcwz-dPbu5eFs
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OTIwZTQ5YTgxNWJkMDQwOTZhNWI1MCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzcxNDUxMTE4LCJleHAiOjE3NzE1Mzc1MTh9.8OnbMBueiFA5NK57qEB5sQfnN7rIi3tLeZXOfqbvnKc
 }
 
 body:json {
