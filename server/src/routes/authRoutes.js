@@ -72,6 +72,31 @@ const router = express.Router();
  *       401:
  *         description: Invalid credentials
  */
+/**
+ * @swagger
+ * /auth/me:
+ *   get:
+ *     summary: Get current authenticated user info
+ *     tags: [Auth]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Successfully returns user information
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: string
+ *                 name:
+ *                   type: string
+ *                 email:
+ *                   type: string
+ *       401:
+ *         description: Invalid or missing token
+ */
 
 router
     .post("/register", AuthController.register)
